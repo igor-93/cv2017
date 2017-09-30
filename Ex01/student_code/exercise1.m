@@ -17,9 +17,8 @@ imgBW1 = rgb2gray(img1);
 imgBW2 = rgb2gray(img2);
 
 % Task 1.1 - extract Harris corners
-threshold = 1;
-[corners1, H1] = extractHarrisCorner(imgBW1', 0.1);
-[corners2, H2] = extractHarrisCorner(imgBW2', threshold);
+[corners1, H1] = extractHarrisCorner(imgBW1', 0.01);
+[corners2, H2] = extractHarrisCorner(imgBW2', 0.01);
 
 % show images with Harris corners
 showImageWithCorners(img1, corners1, 10);
