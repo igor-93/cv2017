@@ -10,24 +10,25 @@
 %                   descriptor. m is the size of the image patch,
 %                   represented as vector
 function descr = extractDescriptor(corners, img)  
-
+    disp('Extracting descriptors...');
     n = size(corners, 2);
     disp(n)
     
-    rows, cols = size(img)
+    [rows, cols] = size(img);
     descr = zeros(81, n);
     
     for it = 1:n
         r = corners(1, it);
         c = corners(2, it);
-        if r-3 < 0 || c-3 < 0
+        if r-4 < 1 || c-4 < 1
             continue;
         end
-        if r+3 > rows || c+3 > cols:
+        if r+4 > rows || c+4 > cols
             continue;
         end
-        region = img(r-3:r+3, c-3:c+3);
+        region = img(r-4:r+4, c-4:c+4);
         descr(:, it) = region(:);
     end
-
+    
+    disp('Done.');
 end

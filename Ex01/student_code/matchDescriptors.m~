@@ -10,13 +10,11 @@
 %                   descriptors
 function matches = matchDescriptors(descr1, descr2, thresh)
 
-    [k, n] = size(descr1);
-    m = size(descr2, 2);
-    
-    ssds = inf(n, m);
-    
-    disp('Building SSDs matrix...');
+    [k, n] = size(descr1)
+    m = size(descr2, 2)
     for it1 = 1:n
+        best_it2 = -1;
+        best_ssd = -1;
         for it2 = 1:m
             % sum of square distances for each pair of descriptors
             ssd = sum((descr1(:, it1) - descr2(:,it2)) .^2);
@@ -24,24 +22,8 @@ function matches = matchDescriptors(descr1, descr2, thresh)
             if ssd > thresh
                 continue;
             end
-            ssds(it1, it2) = ssd;
+            
+            
         end
     end
-    
-    disp('Done.');
-    matches = [];
-    
-    disp('Finding best matches...');
-    while true
-        [min_val, min_ind] = min(ssds(:));
-        [i1, i2] = ind2sub(size(ssds),min_ind);
-        if isinf(min_val)
-            break;
-        end
-        
-        matches = [matches [i1; i2]];
-        ssds(i1, :) = Inf;
-        ssds(:, i2) = Inf;
-    end
-    disp('Done!');
 end
