@@ -14,6 +14,7 @@ function descr = extractDescriptor(corners, img)
     n = size(corners, 2);
     disp(n)
     
+    % init the output
     [rows, cols] = size(img);
     descr = zeros(81, n);
     
@@ -26,6 +27,7 @@ function descr = extractDescriptor(corners, img)
         if r+4 > rows || c+4 > cols
             continue;
         end
+        % vectorize the region and add it to the output
         region = img(r-4:r+4, c-4:c+4);
         descr(:, it) = region(:);
     end

@@ -13,6 +13,7 @@ function matches = matchDescriptors(descr1, descr2, thresh)
     [k, n] = size(descr1);
     m = size(descr2, 2);
     
+    % matrix that will contain SSD for each pair of descriptors
     ssds = inf(n, m);
     
     disp('Building SSDs matrix...');
@@ -20,7 +21,7 @@ function matches = matchDescriptors(descr1, descr2, thresh)
         for it2 = 1:m
             % sum of square distances for each pair of descriptors
             ssd = sum((descr1(:, it1) - descr2(:,it2)) .^2);
-            % discard if SSD bigger then threshold
+            % discard if SSD is bigger then threshold
             if ssd > thresh
                 continue;
             end
@@ -33,13 +34,19 @@ function matches = matchDescriptors(descr1, descr2, thresh)
     
     disp('Finding best matches...');
     while true
+        % find 2 closest descriptors from all possible pairs
         [min_val, min_ind] = min(ssds(:));
         [i1, i2] = ind2sub(size(ssds),min_ind);
+        
+        % stop when the whole matrix are only Infs
         if isinf(min_val)
             break;
         end
         
+        % add the closest descriptors to output
         matches = [matches [i1; i2]];
+        
+        % disable furhter matches for these two descriptors
         ssds(i1, :) = Inf;
         ssds(:, i2) = Inf;
     end

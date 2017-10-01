@@ -19,7 +19,7 @@ function [corners, H] = extractHarrisCorner(img, thresh)
     % gaussian kernel
     gaus = fspecial('gaussian',max(1,fix(6*3)), 3);
     
-    % smoothed image derivs
+    % smoothed them
     Ix2 = conv2(Ix2, gaus, 'same'); 
     Iy2 = conv2(Iy2, gaus, 'same');
     Ixy = conv2(Ixy, gaus, 'same');
@@ -35,6 +35,7 @@ function [corners, H] = extractHarrisCorner(img, thresh)
     [rows,cols] = size(img);
     H(1:rows,1:cols) = 0;   % init output of harris with zeros
     
+    % calculate Harris response measure for each pixel
     for c = 1:cols
         for r = 1:rows
             harris = [Sx2(r, c) Sxy(r, c); Sxy(r, c) Sy2(r, c)];
@@ -46,17 +47,18 @@ function [corners, H] = extractHarrisCorner(img, thresh)
     
     disp('Calculated H.')
     
+    % calculate the max value in the 3x3 neighbourhood for each pixel
+    % excluding the pixel itself (used in non-max suppression)
     fun = @(x) max([max(x([1 3], :)) x(2,1) x(2,3)]);
     supression = nlfilter(H,[3 3],fun);
-    
     disp('Calculated supression.')
     
+    % threshold the image
     passed_thresh = (H > thresh) & (H > supression);
     
+    % collect the indices of the found keypoints
     [rows, cols] = find(passed_thresh);
-    
     corners = transpose([rows(:), cols(:)]);
-    
     disp('Found corners:');
     disp(size(corners));
     
