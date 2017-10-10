@@ -1,4 +1,4 @@
-function [P] = dlt(xy, XYZ)
+function [P, A] = dlt(xy, XYZ)
 %computes DLT, xy and XYZ should be normalized before calling this function
     n = size(xy, 2);
     A = zeros(2*n, 12);
@@ -6,14 +6,12 @@ function [P] = dlt(xy, XYZ)
         xi = xy(1,i);
         yi = xy(2,i);
         wi = xy(3,i);
-        Xi = XYZ(:, i).T;
-        tmp = [wi*Xi zeros(4,1) -xi*Xi; zeros(4,1) -wiXi yi*Xi];
-        A(i:i+1,:) = tmp;
+        Xi = XYZ(:, i)';
+        tmp = [wi*Xi zeros(1,4) -xi*Xi; zeros(1,4) -wi*Xi yi*Xi];
+        A(2*i-1:2*i,:) = tmp;
     end
     
-    rhs = zeros(12, 1);
-    
-    [U,S,V] = svd(A,0);
-    ps = V*((U'*rhs)./diag(S));
-    P = [ps(1:4); ps(5:8); ps(9:12)];
+    [~,~,V] = svd(A);
+    ps = V(:,end);
+    P = [ps(1:4)'; ps(5:8)'; ps(9:12)'];
 end

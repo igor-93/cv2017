@@ -12,23 +12,27 @@ IMG_NAME = 'images/image001.jpg';
 %point.
 %You don't have to do this all the time, just store the resulting xy and
 %XYZ matrices and use them as input for your algorithms.
-%[xy XYZ] = getpoints(IMG_NAME);
-%save("xy.mat", "xy");
-%save("XYZ.mat", "XYZ");
+start_over = false
+if start_over
+    [xy, XYZ] = getpoints(IMG_NAME);
+    save("xy.mat", "xy");
+    save("XYZ.mat", "XYZ");
+else
+    xyFile = matfile('xy.mat');
+    XYZFile = matfile('XYZ.mat');
+    xy = xyFile.xy;
+    XYZ = XYZFile.XYZ;
+end
 
-xyFile = matfile('xy.mat');
-XYZFile = matfile('XYZ.mat');
-xy = xyFile.xy;
-XYZ = XYZFile.XYZ;
+%plot_reprojection(IMG_NAME, xy, 7);
 
 % === Task 2 DLT algorithm ===
 
-[xyn, XYZn, T, U] = normalization(xy, XYZ);
-%[K, R, t, error] = runDLT(xy, XYZ);
+[K, R, t, error] = runDLT(xy, XYZ, IMG_NAME);
 
 % === Task 3 Gold Standard algorithm ===
 
-%[K, R, t, error] = runGoldStandard(xy, XYZ);
+[K, R, t, error] = runGoldStandard(xy, XYZ, IMG_NAME);
 
 % === Bonus: Gold Standard algorithm with radial distortion estimation ===
 
