@@ -1,6 +1,6 @@
 % 1DOF ROBOT LOCALIZATION IN A CIRCULAR HALLWAY USING A HISTOGRAM FILTER
 function MCLLocalization1DOFRobotInTheHallway
-    clear all; %close all;
+clear all; %close all;
     global frame figure_handle plot_handle firstTime;
 
     fprintf('Loading the animation data...\n'); 
@@ -37,17 +37,17 @@ function MCLLocalization1DOFRobotInTheHallway
 	for k = 1:simpar.nSteps
 		 DrawRobot(xTrue_k(1), simpar); %Plots the robot 
 
-		 xTrue_k_1 = xTrue_k;
-		 xTrue_k = SimulateRobot(xTrue_k_1, simpar);  %Simulates the robot movement   
+		 xTrue_k_1=xTrue_k;
+		 xTrue_k=SimulateRobot(xTrue_k_1,simpar);  %Simulates the robot movement   
 
-		 uk = get_odometry(xTrue_k, xTrue_k_1, simpar);                                          
-		 zk = get_measurements(xTrue_k(1), xTrue_k_1(1), simpar);
+		 uk=get_odometry(xTrue_k,xTrue_k_1,simpar);                                          
+		 zk=get_measurements(xTrue_k(1),xTrue_k_1(1),simpar);
 
 		 fprintf('step=%d,zk=%d uk=%f\n',k,zk,uk); 
 
 		% Aplies the particle filter to localize the robot and draws the
 		% particles in the figure
-		 belief_particles = MCL(belief_particles, uk, zk, simpar);
+		 belief_particles=MCL(belief_particles,uk,zk,simpar);
 
     end
 end
@@ -109,7 +109,7 @@ function DrawRobot(x, simpar)
         if i>332, i=332; end;    if  i<1, i=1; end;   
 
         subplot(6,1,1);
-        image(frame(ceil(i)).image);  %axis equal;
+        image(frame(ceil(i)).image);  %axis equal;  
     end
     drawnow;
 end
@@ -172,7 +172,10 @@ function updated_belief_particles = MCL(priorbelief_particles, uk, zk, simpar)
     % check for all particles how likely they are to be nexto to the door
     particle_weights = measurement_model(zk, measurement_model_particles, predict_particles, simpar);
     
-	updated_belief_particles = priorbelief_particles;% change this value for the correct one
+    R = predict_particles( sum( bsxfun(@ge, rand(simpar.numberOfParticles,1), cumsum(particle_weights./sum(particle_weights))), 2) + 1 );
+    
+ 
+	updated_belief_particles = R;
 
 
     % plotting the pdfs for the animation 
@@ -184,13 +187,14 @@ function updated_belief_particles = MCL(priorbelief_particles, uk, zk, simpar)
 end
 
 function predict_particles = sample_motion_model(uk, prior_belief_particles, simpar)
-    predict_particles = mod(uk + prior_belief_particles, simpar.domain);
+    predict_particles = round(uk + prior_belief_particles);
+    overflows = find(predict_particles > simpar.domain);
+    underflows = find(predict_particles < 1);
+    predict_particles(overflows) = predict_particles(overflows) - simpar.domain;
+    predict_particles(underflows) = predict_particles(underflows) + simpar.domain;
 end
 
 function particle_weights = measurement_model(zk, measurement_model_particles, predict_particles, simpar)
-    predict_particles = round(predict_particles);
-    predict_particles(find(predict_particles == 0)) = simpar.domain;
-    predict_particles(find(predict_particles > simpar.domain)) = 1;
     if zk == 1
         particle_weights = measurement_model_particles(predict_particles);
     else
