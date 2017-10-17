@@ -155,37 +155,49 @@ end
 %Aplies the MCL algorithm and plots the results
 function updated_belief_particles = MCL(priorbelief_particles, uk, zk, simpar)
     
+    % shift the particles by uk
+	predict_particles = sample_motion_model(uk, priorbelief_particles, simpar);
     
+    % create pdf of how likely is the robot to be at each x, biven that he
+    % sees the door
+    pd1 = makedist('Normal', simpar.door_locations(1), simpar.door_stdev);
+    pd2 = makedist('Normal', simpar.door_locations(2), simpar.door_stdev);
+    pd3 = makedist('Normal', simpar.door_locations(3), simpar.door_stdev);
+    pdf1 = pdf(pd1, [1:simpar.domain]); 
+    pdf2 = pdf(pd2, [1:simpar.domain]); 
+    pdf3 = pdf(pd3, [1:simpar.domain]); 
+    measurement_model_particles = pdf1 + pdf2 + pdf3;
+    measurement_model_particles = measurement_model_particles ./ sum(measurement_model_particles);
     
-	predict_particles = sample_motion_model(uk, priorbelief_particles, simpar); 
-    measurement_model_particles = measurement_model(zk, [1:simpar.domain], simpar)
+    % check for all particles how likely they are to be nexto to the door
+    particle_weights = measurement_model(zk, measurement_model_particles, predict_particles, simpar);
     
 	updated_belief_particles = priorbelief_particles;% change this value for the correct one
-	pdf_values = pdf('unif',[1:simpar.domain],0,simpar.domain); % change this value for the correct one
 
 
     % plotting the pdfs for the animation 
     DrawParticles(2,'prior', priorbelief_particles, ones(1, simpar.numberOfParticles), simpar);
     DrawParticles(3,'predict', predict_particles, ones(1, simpar.numberOfParticles), simpar);
     DrawGaussian (4,'measurement model', measurement_model_particles, simpar);
-	DrawParticles(5,'Weighted Particles', particle_weights, ones(1, simpar.numberOfParticles), simpar);
+	DrawParticles(5,'Weighted Particles', predict_particles, particle_weights*250, simpar);
     DrawParticles(6,'update', updated_belief_particles, ones(1, simpar.numberOfParticles), simpar);
 end
 
 function predict_particles = sample_motion_model(uk, prior_belief_particles, simpar)
-
     predict_particles = mod(uk + prior_belief_particles, simpar.domain);
-    
-    
 end
 
-function particle_weights = measurement_model(zk, pdf_particles, simpar)
-    pd1 = makedist('Normal', simpar.door_locations(1), simpar.door_stdev);
-    pd2 = makedist('Normal', simpar.door_locations(2), simpar.door_stdev);
-    pd3 = makedist('Normal', simpar.door_locations(3), simpar.door_stdev);
-    pdf1 = pdf(pd1, pdf_particles); 
-    pdf2 = pdf(pd2, pdf_particles); 
-    pdf3 = pdf(pd3, pdf_particles); 
-    measurement_model_particles = pdf1 + pdf2 + pdf3;
-    particle_weights = measurement_model_particles ./ sum(measurement_model_particles);
+function particle_weights = measurement_model(zk, measurement_model_particles, predict_particles, simpar)
+    predict_particles = round(predict_particles);
+    predict_particles(find(predict_particles == 0)) = simpar.domain;
+    predict_particles(find(predict_particles > simpar.domain)) = 1;
+    if zk == 1
+        particle_weights = measurement_model_particles(predict_particles);
+    else
+        particle_weights = 1 - measurement_model_particles(predict_particles);
+    end
+    
+    % normalize the weights
+    particle_weights = particle_weights ./ sum(particle_weights);
+        
 end
