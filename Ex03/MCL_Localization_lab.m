@@ -169,13 +169,13 @@ function updated_belief_particles = MCL(priorbelief_particles, uk, zk, simpar)
     measurement_model_particles = pdf1 + pdf2 + pdf3;
     measurement_model_particles = measurement_model_particles ./ sum(measurement_model_particles);
     
-    % check for all particles how likely they are to be nexto to the door
+    % check for all particles how likely they are to be next to the door
     particle_weights = measurement_model(zk, measurement_model_particles, predict_particles, simpar);
     
-    R = predict_particles( sum( bsxfun(@ge, rand(simpar.numberOfParticles,1), cumsum(particle_weights./sum(particle_weights))), 2) + 1 );
     
- 
-	updated_belief_particles = R;
+    R = predict_particles( sum( bsxfun(@ge, rand(simpar.numberOfParticles,1), cumsum(particle_weights./sum(particle_weights))), 2) + 1 );
+    disp(size(R))
+	updated_belief_particles = R + normrnd(0, simpar.wk_stdev, 1, simpar.numberOfParticles);
 
 
     % plotting the pdfs for the animation 
