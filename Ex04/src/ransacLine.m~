@@ -14,9 +14,13 @@ for i=1:iter
     cols = randperm(size(data, 2), dim);
     p1 = data(:, cols(1));
     p2 = data(:, cols(2));
+
+    k_rand = (p2(2) - p1(2)) / (p2(1) - p1(1));
+    b_rand = p2(2) - k*p2(1);
     
     % Compute the distances between all points with the fitting line
-    distances = abs((p2(2)-p1(2))*data(1,:) - (p2(1)-p1(1))*data(2,:) + p2(1)*p1(2)-p2(2)*p1(1)) / sqrt( (p2(2)-p1(2))^2 + (p2(1) - p1(1))^2 );
+    distances = abs(-data(2,:)+k_rand*data(1,:)+b_rand) / (sqrt(1+k_rand*k_rand));
+    distances = abs((p2(2)-p1(2))*) / sqrt( (p2(2)-p1(2))^2 + (p2(1) - p1(1))^2 );
     
     % Compute the inliers with distances smaller than the threshold
     inliers = find(distances <= threshDist);
