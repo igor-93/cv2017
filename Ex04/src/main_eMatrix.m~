@@ -54,13 +54,15 @@ figure(2),hold off, imshow(img2, []); hold on, plot(x2s(1,:), x2s(2,:), '*b');
 
 K_inv = inv(K);
 nnx1s = K_inv * x1s;
-nnx2s = K_inv * x2s;
+nnx2s = K_inv * x1s;
 
 % estimate fundamental matrix
 [Eh, E] = essentialMatrix(nnx1s, nnx2s);
 
 F = K_inv.' * E * K_inv;
 Fh = K_inv.' * Eh * K_inv;
+
+
 
 % compute the corresponding epipolar lines from F=K_inv'*E*K_inv
 % draw epipolar lines in img 1
@@ -76,4 +78,32 @@ for k = 1:size(x2s,2)
 end
 
 % decomposing Essential matrix into R and T
-P = decomposeE(Eh, nnx1s, nnx2s);
+[U,S,V] = svd(Eh);
+
+W = [0 -1 0; 1 0 0; 0 0 1];
+R1 = U * W * V';
+if det(R1) < 0
+    R1 = -R1;
+end
+R2 = U * W' * V';
+if det(R2) < 0
+    R2 = -R2;
+end
+t = U(:,end);
+t = t/norm(t);
+P1 = [R1 * horzcat(eye(3), t);0 0 0 1];
+P2 = [R1 * horzcat(eye(3), -t);0 0 0 1];
+P3 = [R2 * horzcat(eye(3), t);0 0 0 1];
+P4 = [R2 * horzcat(eye(3), -t);0 0 0 1];
+
+
+for i = 1:4
+    [XS, err] = linearTriangulation([eye(3), zeros(3,1)], x1s, Ps{i}, x2s);
+    if all(XS(3,:) >= 0)
+        disp(['It is P', num2str(i)])
+    end
+end
+
+Ps = {P1, P2, P3, P4};
+
+showCameras(Ps, 7)
