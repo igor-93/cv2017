@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.28)  28 OCT 2017 14:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.28)  8 NOV 2017 11:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -265,7 +265,14 @@ Class scrartcl Warning: Usage of package `fancyhdr' together
 \f@ncyO@erf=\skip60
 \f@ncyO@olf=\skip61
 \f@ncyO@orf=\skip62
-) (./report.aux)
+) (./report.aux
+
+LaTeX Warning: Label `fig:f' multiply defined.
+
+
+LaTeX Warning: Label `fig:fh' multiply defined.
+
+)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
@@ -280,8 +287,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
 LaTeX Font Info:    ... okay on input line 71.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
 LaTeX Font Info:    ... okay on input line 71.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count106
 \scratchdimen=\dimen122
@@ -364,28 +370,170 @@ File: ransacLine.jpg Graphic file (type jpg)
  <use ransacLine.jpg>
 Package pdftex.def Info: ransacLine.jpg used on input line 82.
 (pdftex.def)             Requested size: 292.7776pt x 160.1101pt.
- [1
+
+<f1.jpg, id=2, 1284.8pt x 702.625pt>
+File: f1.jpg Graphic file (type jpg)
+ <use f1.jpg>
+Package pdftex.def Info: f1.jpg used on input line 95.
+(pdftex.def)             Requested size: 313.69167pt x 171.5496pt.
+
+Overfull \hbox (104.56389pt too wide) in paragraph at lines 95--96
+ [][] 
+ []
+
+<f2.jpg, id=3, 1284.8pt x 702.625pt>
+File: f2.jpg Graphic file (type jpg)
+ <use f2.jpg>
+Package pdftex.def Info: f2.jpg used on input line 100.
+(pdftex.def)             Requested size: 322.05714pt x 176.11682pt.
+
+Overfull \hbox (29.27954pt too wide) in paragraph at lines 100--101
+ [][] 
+ []
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./ransacLine.jpg>] [2] (./
-report.aux) ) 
+Overfull \hbox (83.64983pt too wide) in paragraph at lines 93--103
+ []$[]$$[]$ 
+ []
+
+[1
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./ransacLine.jpg>]
+<fh1.jpg, id=14, 1284.8pt x 702.625pt>
+File: fh1.jpg Graphic file (type jpg)
+ <use fh1.jpg>
+Package pdftex.def Info: fh1.jpg used on input line 111.
+(pdftex.def)             Requested size: 313.69167pt x 171.5496pt.
+
+Overfull \hbox (104.56389pt too wide) in paragraph at lines 111--112
+ [][] 
+ []
+
+<fh2.jpg, id=15, 1284.8pt x 702.625pt>
+File: fh2.jpg Graphic file (type jpg)
+ <use fh2.jpg>
+Package pdftex.def Info: fh2.jpg used on input line 116.
+(pdftex.def)             Requested size: 322.05714pt x 176.11682pt.
+
+Overfull \hbox (29.27954pt too wide) in paragraph at lines 116--117
+ [][] 
+ []
+
+
+Overfull \hbox (83.64983pt too wide) in paragraph at lines 109--119
+ []$[]$$[]$ 
+ []
+
+
+LaTeX Warning: Reference `fig:e' on page 2 undefined on input line 125.
+
+
+LaTeX Warning: Reference `fig:eh' on page 2 undefined on input line 125.
+
+<e1.jpg, id=16, 1284.8pt x 702.625pt>
+File: e1.jpg Graphic file (type jpg)
+ <use e1.jpg>
+Package pdftex.def Info: e1.jpg used on input line 153.
+(pdftex.def)             Requested size: 313.69167pt x 171.5496pt.
+
+Overfull \hbox (104.56389pt too wide) in paragraph at lines 153--154
+ [][] 
+ []
+
+<e2.jpg, id=17, 1284.8pt x 702.625pt>
+File: e2.jpg Graphic file (type jpg)
+ <use e2.jpg>
+Package pdftex.def Info: e2.jpg used on input line 158.
+(pdftex.def)             Requested size: 322.05714pt x 176.11682pt.
+
+Overfull \hbox (29.27954pt too wide) in paragraph at lines 158--159
+ [][] 
+ []
+
+
+Overfull \hbox (83.64983pt too wide) in paragraph at lines 151--161
+ []$[]$$[]$ 
+ []
+
+<eh1.jpg, id=18, 1284.8pt x 702.625pt>
+File: eh1.jpg Graphic file (type jpg)
+ <use eh1.jpg>
+Package pdftex.def Info: eh1.jpg used on input line 169.
+(pdftex.def)             Requested size: 313.69167pt x 171.5496pt.
+
+Overfull \hbox (104.56389pt too wide) in paragraph at lines 169--170
+ [][] 
+ []
+
+<eh2.jpg, id=19, 1284.8pt x 702.625pt>
+File: eh2.jpg Graphic file (type jpg)
+ <use eh2.jpg>
+Package pdftex.def Info: eh2.jpg used on input line 174.
+(pdftex.def)             Requested size: 322.05714pt x 176.11682pt.
+
+Overfull \hbox (29.27954pt too wide) in paragraph at lines 174--175
+ [][] 
+ []
+
+
+Overfull \hbox (83.64983pt too wide) in paragraph at lines 167--177
+ []$[]$$[]$ 
+ []
+
+[2 <./f1.jpg> <./f2.jpg>] [3 <./fh1.jpg> <./fh2.jpg> <./e1.jpg> <./e2.jpg>]
+<cameras.jpg, id=35, 1284.8pt x 702.625pt>
+File: cameras.jpg Graphic file (type jpg)
+ <use cameras.jpg>
+Package pdftex.def Info: cameras.jpg used on input line 186.
+(pdftex.def)             Requested size: 292.7776pt x 160.1101pt.
+
+<sift.jpg, id=36, 1284.8pt x 702.625pt>
+File: sift.jpg Graphic file (type jpg)
+ <use sift.jpg>
+Package pdftex.def Info: sift.jpg used on input line 197.
+(pdftex.def)             Requested size: 501.90538pt x 274.47293pt.
+
+Overfull \hbox (83.64983pt too wide) in paragraph at lines 197--198
+ [][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[4 <./eh1.jpg> <./eh2.jpg> <./cameras.jpg>] [5 <./sift.jpg>] (./report.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 5928 strings out of 494910
- 90423 string characters out of 6179836
- 313924 words of memory out of 5000000
- 9136 multiletter control sequences out of 15000+600000
- 14063 words of font info for 36 fonts, out of 8000000 for 9000
+ 6019 strings out of 494910
+ 91467 string characters out of 6179836
+ 319003 words of memory out of 5000000
+ 9208 multiletter control sequences out of 15000+600000
+ 19957 words of font info for 55 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 47i,10n,47p,666b,314s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/igor/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1440.600pk
-> </home/igor/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/igo
-r/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/igor/.texmf-var
-/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/igor/.texmf-var/fonts/pk/lj
-four/jknappen/ec/eccc1095.600pk>
-Output written on report.pdf (2 pages, 79415 bytes).
+ 47i,10n,47p,666b,493s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/igor/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/ig
+or/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/igor/.texmf-va
+r/fonts/pk/ljfour/jknappen/ec/eccc1440.600pk> </home/igor/.texmf-var/fonts/pk/l
+jfour/jknappen/ec/ecrm1095.600pk> </home/igor/.texmf-var/fonts/pk/ljfour/jknapp
+en/ec/ecrm1440.600pk> </home/igor/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm20
+74.600pk> </home/igor/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1095.600pk></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmsy8.pfb>
+Output written on report.pdf (5 pages, 1042809 bytes).
 PDF statistics:
- 150 PDF objects out of 1000 (max. 8388607)
- 26 compressed objects within 1 object stream
+ 240 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

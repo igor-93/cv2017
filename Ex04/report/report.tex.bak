@@ -73,18 +73,130 @@
 \maketitle % Print the title
 
 
-\section{Line fitting with RANSAC}
+\section{Line Fitting with RANSAC}
 
-In Figure \ref{fig:ransacLine} are plotted the fitted lines for the given points. The black line represents the real model, the green is the one fitted with the least squares and and the red one is fitted with RANSAC. As we can see, RANSAC has performed very well, and also much better than least squares. This is because RANSAC only fits the model based on the inliers and thus is very robust to the outliers in comparison to the least squares.
+In Figure \ref{fig:ransacLine} are shown the fitted lines for the given points. The black line represents the real model, the green is the one fitted with the least squares and and the red one is fitted with RANSAC. As we can see, RANSAC has performed very well, and also much better than least squares. This is because RANSAC only fits the model based on the inliers and thus is very robust to the outliers in comparison to the least squares. Error with RANSAC (with 73 inliers) was 691.2084 and with least squares was 681.0276. Lower error of least squares algorithm is expected since that is the objective that is directly minimized.
 
-\begin{figure}
+\begin{figure}[h!]
 \centering
-\includegraphics[width=\textwidth]{ransacLine.jpg}
+\includegraphics[width=0.7\textwidth]{ransacLine.jpg}
 \caption{Line fitted with LS and RANSAC.}
 \label{fig:ransacLine}
 \end{figure}
 
 
+\section{Fundamental Matrix}
+
+The Figures \ref{fig:f} and \ref{fig:fh} show the epipolar lines obtained by both unconstrained and constrained fundamental matrix. In both cases the points were normalized and the fundamental matrix was denormalized.
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.5\linewidth]{f1.jpg}
+  \caption{Left}
+\end{subfigure}%
+\begin{subfigure}{.7\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{f2.jpg}
+  \caption{Right}
+\end{subfigure}
+\caption{Obtained with Unconstrained Fundamental Matrix}
+\label{fig:f}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.5\linewidth]{fh1.jpg}
+  \caption{Left}
+\end{subfigure}%
+\begin{subfigure}{.7\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{fh2.jpg}
+  \caption{Right}
+\end{subfigure}
+\caption{Obtained with Constrained Fundamental Matrix}
+\label{fig:fh}
+\end{figure}
+
+
+\section{Essential Matrix}
+Same as in the previous section, here I also present epipolar lines (figures \ref{fig:e} and \ref{fig:eh}) from both unconstrained and constrained Fundamental matrix, but this time the lines are obtained by normalizing the points with camera calibration matrix K and then denormalizing the obtained essential matrix E to fundamental matrix F.\\
+The following are the obtained (constrained) matrices (F is from the previous section):
+\[ E=
+\begin{bmatrix}
+-0.123043889725867	& 5.95442555256993	& 2.39708269015134 \\
+7.58535258787966 &	-0.562008696217138	& 3.04984669403554 \\
+2.81965957105025 &	-3.35900913477464 &	-0.162594823748377
+\end{bmatrix}
+\]
+\[ K^{-T}  E  K^{-1}=
+\begin{bmatrix}
+-4.5004e-08 & 	2.1754e-06 &	-8.4179e-05 \\
+2.7713e-06 &	-2.0511e-07 &	-0.0007 \\
+-0.00026	& -0.0040	& 0.2474
+\end{bmatrix}
+\]
+\[ F=
+\begin{bmatrix}
+-1.37288e-07 &	2.3807e-06	& -6.8534e-05 \\
+2.5125e-06	& 1.4240e-07 &	-0.0007 \\
+-5.7192e-05	& -0.00444 &	0.2117
+\end{bmatrix}
+\]
+ 
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.5\linewidth]{e1.jpg}
+  \caption{Left}
+\end{subfigure}%
+\begin{subfigure}{.7\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{e2.jpg}
+  \caption{Right}
+\end{subfigure}
+\caption{Obtained with Unconstrained Essential Matrix}
+\label{fig:f}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.5\linewidth]{eh1.jpg}
+  \caption{Left}
+\end{subfigure}%
+\begin{subfigure}{.7\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{eh2.jpg}
+  \caption{Right}
+\end{subfigure}
+\caption{Obtained with Constrained Essential Matrix}
+\label{fig:fh}
+\end{figure}
+
+\section{Decomposition of Essential Matrix}
+I have decomposed E as following: $R_1 = U * W * V^T$ and $R_2 = U * W^T * V^T$, $t=U(:,end)$ with W is as described in exercise slides. Then $P_1=[R_1|t]$, $P_2=[R_1|-t]$, $P_3=[R_2|t]$, $P_4=[R_2|-t]$. By using the triangulation and making sure that all $X$ and $PX$ have positive $z$ coordinate I have chosen $P_1$. Figure \ref{fig:camera} plots the camera (3D).
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{cameras.jpg}
+\caption{Camera plot.}
+\label{fig:camera}
+\end{figure}		
+
+\section{Feature extraction and matching}		
+
+The Figure \ref{fig:sift} shows the matched features in the image pair. Since there is a rotation between the cameras it is expected that not all the lines between the matches are parallel.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.2\textwidth]{sift.jpg}
+\caption{SIFT: matched features.}
+\label{fig:sift}
+\end{figure}
 
 
 \end{document}

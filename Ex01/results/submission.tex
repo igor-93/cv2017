@@ -79,7 +79,7 @@
 \section{Feature extraction}
 
 
-I have implemented the  feature extraction step basically the as described in the exercise sheet with addition of the Gaussian blurring of the image derivatives. In order to avoid multiple for loops in MATLAB, I have precomputed the sums of the blurred  $I_{x}^2$, $I_{y}^2$ and $I_{xy}$. I choose the threshold of $0.005$ for Harris response measure. 
+I have implemented the feature extraction step basically as described in the exercise sheet with the addition of the Gaussian blurring of the image derivatives. In order to avoid multiple for loops in MATLAB, I have precomputed the sums of the blurred  $I_{x}^2$, $I_{y}^2$ and $I_{xy}$. I chose the threshold of $0.005$ for Harris response measure. 
 
 %------------------------------------------------
 
@@ -125,7 +125,7 @@ In Figures \ref{fig:supr1} and \ref{fig:supr2} are the Harris corners before and
 
 I have ran the SIFT library with $PeakThresh = 0.02$ for both images. I have chosen this value empirically, so that the images are not too crowded with the keypoints. In Figures \ref{fig:sift1} and \ref{fig:sift2} are the comparisons of my implementation of Harris corner detection and the vlfeat SIFT implementation. \\
 \\
-I have got the feeling that SIFT has found many points that do not represent corners, but rather edges. On the other hand, Harris corner detector had way less of the key points on the edges.
+I have got the feeling that SIFT has found many points that do not represent corners, but rather edges. On the other hand, Harris corner detector had way less of the key points on the edges. Nevertheless points found by SIFT are more distributed across the whole image, while Harris has failed to identify lots of points in the upper and in the left part of the image. 
 
 \begin{figure}
 \centering

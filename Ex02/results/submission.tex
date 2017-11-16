@@ -76,7 +76,7 @@
 \section{Camera Calibration}
 
 \subsection{Data normalization}
-In this part of the code, I have normalized the data as described on the exercise sheet. So the normalized data is shifted around the origin and the average distance to the origin of the shifted data is $\sqrt{2}$ and $\sqrt{3}$ for 2D and 3D point respectively. Transformation matrices $T$ and $U$ are the inverse of the matrices where diagonals are filled with the scales and the last column represents the minus mean point in homogeneous coordinates. 
+In this part of the code, I have normalized the data as described on the exercise sheet. So the normalized data is shifted around the origin and the average distance to the origin of the shifted data is $\sqrt{2}$ and $\sqrt{3}$ for 2D and 3D point respectively. Transformation matrices $T$ and $U$ are the inverse of the matrices where diagonals are filled with the scales and the last column represents the mean point in homogeneous coordinates. 
 
 \subsection{DLT and Gold Standard Algorithm}
 I have implemented these two algorithms exactly as described on the exercise sheet, although the matrix $A$ from the equation $AP=0$ is a vertical concatenation of sub-matrices for each data point. Thus the size of matrix $A$ is $2n \times 12$. The selected points are shown in Figure \ref{fig:orig} and their reprojections in Figure \ref{fig:repr}.\\

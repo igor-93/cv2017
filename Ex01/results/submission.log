@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.28)  1 OCT 2017 14:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.28)  3 OCT 2017 16:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -266,7 +266,7 @@ Class scrartcl Warning: Usage of package `fancyhdr' together
 \f@ncyO@olf=\skip61
 \f@ncyO@orf=\skip62
 )
-No file submission.aux.
+(./submission.aux)
 \openout1 = `submission.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
@@ -281,6 +281,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
 LaTeX Font Info:    ... okay on input line 71.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
 LaTeX Font Info:    ... okay on input line 71.
+
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count106
@@ -359,12 +360,6 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 74.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-
-LaTeX Warning: Reference `fig:supr1' on page 1 undefined on input line 88.
-
-
-LaTeX Warning: Reference `fig:supr2' on page 1 undefined on input line 88.
-
 <img1_harris_no_supr.jpg, id=1, 1005.7575pt x 705.63625pt>
 File: img1_harris_no_supr.jpg Graphic file (type jpg)
 
@@ -393,23 +388,22 @@ File: im2_harris_corners.jpg Graphic file (type jpg)
 Package pdftex.def Info: im2_harris_corners.jpg used on input line 115.
 (pdftex.def)             Requested size: 209.12778pt x 146.72365pt.
 
-
-LaTeX Warning: Reference `fig:sift1' on page 1 undefined on input line 126.
-
-
-LaTeX Warning: Reference `fig:sift2' on page 1 undefined on input line 126.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 126--129
 
  []
 
+[1
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./img1_harris_no_supr.
+jpg> <./im1_harris_corners.jpg> <./img2_harris_no_supr.jpg> <./im2_harris_corne
+rs.jpg>]
 File: im1_harris_corners.jpg Graphic file (type jpg)
-<use im1_harris_corners.jpg>
+ <use im1_harris_corners.jpg>
 Package pdftex.def Info: im1_harris_corners.jpg used on input line 134.
 (pdftex.def)             Requested size: 209.12778pt x 146.84537pt.
 
-<img1_sift_corners.jpg, id=5, 1005.7575pt x 705.63625pt>
+<img1_sift_corners.jpg, id=24, 1005.7575pt x 705.63625pt>
 File: img1_sift_corners.jpg Graphic file (type jpg)
 
 <use img1_sift_corners.jpg>
@@ -420,71 +414,53 @@ File: im2_harris_corners.jpg Graphic file (type jpg)
 Package pdftex.def Info: im2_harris_corners.jpg used on input line 150.
 (pdftex.def)             Requested size: 209.12778pt x 146.72365pt.
 
-<img2_sift_corners.jpg, id=6, 1005.7575pt x 705.63625pt>
+<img2_sift_corners.jpg, id=25, 1005.7575pt x 705.63625pt>
 File: img2_sift_corners.jpg Graphic file (type jpg)
 
 <use img2_sift_corners.jpg>
 Package pdftex.def Info: img2_sift_corners.jpg used on input line 155.
 (pdftex.def)             Requested size: 209.12778pt x 146.72365pt.
 
-
-LaTeX Warning: Reference `fig:match_harris' on page 1 undefined on input line 1
-65.
-
-
-LaTeX Warning: Reference `fig:match_sift' on page 1 undefined on input line 165
-.
-
-[1
-
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./img1_harris_no_supr.
-jpg> <./im1_harris_corners.jpg> <./img2_harris_no_supr.jpg> <./im2_harris_corne
-rs.jpg> <./img1_sift_corners.jpg>]
-<harris_matches.jpg, id=27, 1005.7575pt x 398.48875pt>
+<harris_matches.jpg, id=26, 1005.7575pt x 398.48875pt>
 File: harris_matches.jpg Graphic file (type jpg)
 
 <use harris_matches.jpg>
 Package pdftex.def Info: harris_matches.jpg used on input line 169.
 (pdftex.def)             Requested size: 418.25555pt x 165.71632pt.
- <sift_matches.jpg, id=28, 1013.7875pt x 403.5075pt>
+ <sift_matches.jpg, id=27, 1013.7875pt x 403.5075pt>
 File: sift_matches.jpg Graphic file (type jpg)
 
 <use sift_matches.jpg>
 Package pdftex.def Info: sift_matches.jpg used on input line 176.
 (pdftex.def)             Requested size: 418.25555pt x 166.47353pt.
- [3 <./img2_sift_corners.jpg> <./harris_matches.jpg>]
-[4 <./sift_matches.jpg>] (./submission.aux)
-
-LaTeX Warning: There were undefined references.
-
+ [3 <./img1_sift_corners.jpg> <./img2_sift_corners.jpg>]
+[4 <./harris_matches.jpg> <./sift_matches.jpg>] (./submission.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
  6009 strings out of 494910
- 91919 string characters out of 6179836
- 317916 words of memory out of 5000000
- 9199 multiletter control sequences out of 15000+600000
- 22937 words of font info for 59 fonts, out of 8000000 for 9000
+ 91924 string characters out of 6179836
+ 315976 words of memory out of 5000000
+ 9198 multiletter control sequences out of 15000+600000
+ 22154 words of font info for 58 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 47i,10n,47p,513b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 47i,10n,47p,507b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/igor/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/ig
-or/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/igor/.texmf-va
-r/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk> </home/igor/.texmf-var/fonts/pk/l
-jfour/jknappen/ec/eccc1440.600pk> </home/igor/.texmf-var/fonts/pk/ljfour/jknapp
-en/ec/ecrm1095.600pk> </home/igor/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm14
-40.600pk> </home/igor/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </
-home/igor/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1095.600pk></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr8.pfb>
-Output written on submission.pdf (4 pages, 661036 bytes).
+or/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk> </home/igor/.texmf-va
+r/fonts/pk/ljfour/jknappen/ec/eccc1440.600pk> </home/igor/.texmf-var/fonts/pk/l
+jfour/jknappen/ec/ecrm1095.600pk> </home/igor/.texmf-var/fonts/pk/ljfour/jknapp
+en/ec/ecrm1440.600pk> </home/igor/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm20
+74.600pk> </home/igor/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1095.600pk></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>
+Output written on submission.pdf (4 pages, 660715 bytes).
 PDF statistics:
- 221 PDF objects out of 1000 (max. 8388607)
- 54 compressed objects within 1 object stream
+ 216 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
