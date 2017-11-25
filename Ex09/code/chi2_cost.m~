@@ -1,5 +1,5 @@
 % s1, s2 are descriptors. shape: n, k
-% C is cost matrix of shape: n, m (NOTE: it is NOT symmetric)
+% C is cost matrix of shape: n, n
 function C = chi2_cost(s1,s2)
 
 [n1, k1] = size(s1);
@@ -14,3 +14,8 @@ for i1 = 1:n1
         C(i1, i2) = 0.5 * sum( (g - h).^2 / (g + h));
     end
 end
+% make it symmetric
+C = C + C';
+keyboard;
+
+            

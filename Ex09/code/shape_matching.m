@@ -10,7 +10,7 @@ nbSamples = size(X,1);
 nbBins_theta = 12;
 nbBins_r = 5;
 smallest_r = 1/8;
-biggest_r = 3;
+biggest_r = 6;
 maxIterations = 6;
 
 
@@ -62,8 +62,8 @@ while currentIteration <= maxIterations
        
    %keyboard;
    Xwarped = currentX(corespondencesIndex,:);   
-   Xunwarped = X(corespondencesIndex,:);  
-   %Xunwarped = currentX(corespondencesIndex,:);  
+   %Xunwarped = X(corespondencesIndex,:);  
+   Xunwarped = currentX(corespondencesIndex,:);  
 
    if display_flag       
       figure(2)
@@ -124,6 +124,7 @@ while currentIteration <= maxIterations
       plot(fx,fy,'k.','markersize',1)
       hold off
       drawnow
+      keyboard;
    end         
    
    %update currentIteration
