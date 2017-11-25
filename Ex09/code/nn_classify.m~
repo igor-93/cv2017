@@ -1,0 +1,15 @@
+function testClass = nn_classify(matchingCostVector,trainClasses,k)
+
+[costsSorted costsIdx] = sort(matchingCostVector);
+ %smallestCosts = costsSorted(1:k);
+ smallestKIdx = costsIdx(1:k);
+ 
+ forks = 0;
+ watches = 0;
+ hearts = 
+ 
+ for i = 1:k
+     idx = smallestKIdx(i);
+     cl = trainClasses{idx};
+     if cl == 'fork'
+         
