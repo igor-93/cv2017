@@ -12,15 +12,14 @@ classes_found = {};
      classes_found{i} = cl;
  end
  
-keyboard;
-% testClass = mode(classes_found);
+ testClass = mode(classes_found);
  
  
-x = classes_found;
+x = {'apple','lemon','apple','peach'};
 y = unique(x);
 n = zeros(length(y), 1);
 for iy = 1:length(y)
   n(iy) = length(find(strcmp(y{iy}, x)));
 end
 [~, itemp] = max(n);
-testClass = y(itemp)
+y(itemp)

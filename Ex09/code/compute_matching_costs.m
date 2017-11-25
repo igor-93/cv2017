@@ -1,7 +1,7 @@
 function costMatrix = compute_matching_costs(objects,nSamples)
 
 n = length(objects);
-display_flag = true;
+display_flag = false;
 
 costMatrix = Inf*eye(n);
 

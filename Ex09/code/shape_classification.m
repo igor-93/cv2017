@@ -10,6 +10,7 @@ nbSamples = 100;
 
 %write the computeMatchingCosts.m function
 matchingCostMatrix = compute_matching_costs(objects,nbSamples);
+keyboard;
 
 allClasses = {objects(:).class};
 
