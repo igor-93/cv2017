@@ -10,4 +10,11 @@ function histo = bow_histogram(vFeatures, vCenters)
   % Match all features to the codebook and record the activated
   % codebook entries in the activation histogram "histo".
  
+  n_clusters = size(vCenters, 1);
+  
+  [idx, ~] = findnn( vFeatures, vCenters );
+  
+  bins = 1:n_clusters;
+  histo = hist(idx, bins);
+  
 end

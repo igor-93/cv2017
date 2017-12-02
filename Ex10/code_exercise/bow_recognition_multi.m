@@ -16,6 +16,6 @@ function bow_recognition_multi(histograms,labels,vBoWPos,vBoWNeg, classifierFunc
     end
     
     disp(['Percentage of correctly classified images:' num2str(pos/image_count)]);
-   
+    disp(['Percentage of failed classified images:' num2str(neg/image_count)]);
 end
   

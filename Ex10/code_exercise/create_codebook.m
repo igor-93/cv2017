@@ -25,14 +25,27 @@ function vCenters = create_codebook(nameDir,k,numiter)
     vPoints = grid_points(img,nPointsX,nPointsY,border);
     
     % create hog descriptors and patches
-    [vFeatures, vPatches] = descriptors_hog(img,vPoints,cellWidth,cellHeight);
+    [cFeatures, cPatches] = descriptors_hog(img,vPoints,cellWidth,cellHeight);
+    
+    vFeatures = [vFeatures; cFeatures];
+    vPatches = [vPatches; cPatches];
     
   end
   disp(strcat('    Number of extracted features:',num2str(size(vFeatures,1))));
 
   % Cluster the features using K-Means
-  disp(strcat('  Clustering...'));
-  vCenters = kmeans(vFeatures, k, numiter);
+%   ks = [5, 10, 15, 20, 25, 30, 35, 50, 70, 80, 100, 200, 300, 400, 500, 700, 1000];
+%   losses = [];
+%   for ki = ks
+%       disp(strcat('  Clustering...'));
+%       [vCenters, loss] = kmeans(vFeatures, ki, numiter);
+%       losses = [losses; loss];
+%   end
+% figure(7)
+% plot(ks,losses)
+
+  [vCenters, loss] = kmeans(vFeatures, k, numiter);
+  
   
   
   % Visualize the code book  
