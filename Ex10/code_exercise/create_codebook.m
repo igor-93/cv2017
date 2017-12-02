@@ -36,13 +36,19 @@ function vCenters = create_codebook(nameDir,k,numiter)
   % Cluster the features using K-Means
 %   ks = [5, 10, 15, 20, 25, 30, 35, 50, 70, 80, 100, 200, 300, 400, 500, 700, 1000];
 %   losses = [];
+%   num_trials = 10;
 %   for ki = ks
-%       disp(strcat('  Clustering...'));
-%       [vCenters, loss] = kmeans(vFeatures, ki, numiter);
-%       losses = [losses; loss];
+%       ave_loss = 0
+%       for j = 1:num_trials
+%           disp(strcat('  Clustering...'));
+%           [~, loss] = kmeans(vFeatures, ki, numiter);
+%           ave_loss = ave_loss + loss;
+%       end
+%       ave_loss = ave_loss / num_trials;
+%       losses = [losses; ave_loss];
 %   end
-% figure(7)
-% plot(ks,losses)
+%   figure(7)
+%   plot(ks,losses)
 
   [vCenters, loss] = kmeans(vFeatures, k, numiter);
   
@@ -51,8 +57,8 @@ function vCenters = create_codebook(nameDir,k,numiter)
   % Visualize the code book  
   disp('Visualizing the codebook...');
   visualize_codebook(vCenters,vFeatures,vPatches,cellWidth,cellHeight);
-  disp('Press any key to continue...');
-  pause;
+  %disp('Press any key to continue...');
+  %pause;
   
  
 
