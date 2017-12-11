@@ -6,6 +6,8 @@ img = imread('cow.jpg');
 % (use imresize)
 % (especially for the mean-shift part!)
 img = im2double(img);
+scale = 0.5;
+%img = imresize(img,scale);
 figure, imshow(img), title('original image')
 
 
@@ -20,14 +22,17 @@ figure, imshow(imgSmoothed), title('smoothed image')
 
 imglab = rgb2lab(imgSmoothed);
 figure, imshow(imglab), title('l*a*b* image')
-keyboard;
+
 
 % (6.2)
-[mapMS, peak] = meanshiftSeg(imglab);
-visualizeSegmentationResults(mapMS,peak);
+% r = 0.005;
+% [mapMS, peak] = meanshiftSeg(imglab, r);
+% visualizeSegmentationResults(mapMS,peak);
+
 
 % (6.3)
-[mapEM, cluster] = EM(imglab);
-visualizeSegmentationResults(mapEM,cluster);
+K = 3;
+[mapEM, mus] = EM(imglab, K);
+visualizeSegmentationResults(mapEM,mus);
 
 end

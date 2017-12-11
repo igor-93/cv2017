@@ -26,18 +26,15 @@ for i = 1:300
     P = expectation(old_mus,vars,alphas,X);
     
     % use function maximization
-    [mus, vars, alphas] = maximization(P, X);
+    [mus, vars, alphas] = maximization(P, X)
 
-    sq_diff = (mus - old_mus).^2;
+    sq_diff = square(mus - old_mus);
     err = sum(sq_diff(:))
-    if err < 1e-8
+    if err == 0
         break
-    else
-        old_mus = mus;
     end
 end
 
 map = max(P, [], 2);
-map = reshape(map, [n, m]);
 
 end

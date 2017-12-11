@@ -13,7 +13,8 @@ for i = 2:k
     C(:,i) = X(:,find(rand < D/D(end),1));
     [~,L] = max(bsxfun(@minus,2*real(C'*X),dot(C,C,1).'));
 end
-C = C';
+keyboard;
+C = C
 assert(size(C, 1) == k);
 assert(size(C, 2) == 3);
 
