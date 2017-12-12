@@ -1,7 +1,0 @@
-function new_a = reassign(a, map)
-    to_reassign = find(((1:size(map, 2)) - map) ~= 0);
-    for cl = to_reassign
-        a(a == cl) = map(cl);
-    end
-    new_a = a;
-end

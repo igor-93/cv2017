@@ -31,7 +31,7 @@ r = 10;
 
 
 % (6.3)
-K = 4;
+K = 3;
 [mapEM, mus] = EM(imglab, K);
 visualizeSegmentationResults(mapEM,mus, 'EM');
 
