@@ -8,7 +8,7 @@ function ids = visualizeMostLikelySegments(I,alpha,mu,cov)
 % use imagesc to draw the image
 
 I = im2double(I);
-K = length(alpha);
+K = size(alpha,2);
 
 scores = zeros(size(I,1),size(I,2),K);
 
@@ -25,6 +25,6 @@ end
 
 [s ids] = max(scores,[],3);
 % figure;
-% imagesc(ids);
+imagesc(ids);
 
 end

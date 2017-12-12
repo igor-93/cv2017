@@ -6,8 +6,7 @@ function visualizeSegmentationResults (map,vals)
 K = size(vals,1);
 D = size(vals,2);
 
-figure;
-imagesc(map);
+figure, imagesc(map), title('Assignments')
 
 valImg = zeros(size(map,1),size(map,2),D);
 
@@ -19,7 +18,7 @@ for d=1:D
     valImg(:,:,d) = valImgd;
 end
 
-figure;
-imshow(valImg);
+
+figure, imagesc(valImg), title('valImg')
 
 end

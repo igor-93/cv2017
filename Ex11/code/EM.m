@@ -9,7 +9,11 @@ ch1 = reshape(ch1, [n*m, 1]);
 ch2 = reshape(ch2, [n*m, 1]);
 ch3 = reshape(ch3, [n*m, 1]);
 
-X = [ch1 ch2 ch3];
+X = [ch1 ch2 ch3 ones(n*m,1)];
+
+% normalize data
+[X, T] = normalise3dpts(X');
+X = (X(1:3,:))';
 
 % use function generate_mu to initialize mus
 mus = generate_mu(X, K);
@@ -28,16 +32,19 @@ for i = 1:300
     % use function maximization
     [mus, vars, alphas] = maximization(P, X);
 
+    %ids = visualizeMostLikelySegments(img,alphas,mus,vars);
+    %keyboard;
+    
     sq_diff = (mus - old_mus).^2;
-    err = sum(sq_diff(:))
-    if err < 1e-8
+    diff = sum(sq_diff(:))
+    if diff < 1e-3
         break
     else
         old_mus = mus;
     end
 end
 
-map = max(P, [], 2);
+[~, map] = max(P, [], 2);
 map = reshape(map, [n, m]);
 
 end

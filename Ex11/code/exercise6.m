@@ -31,7 +31,7 @@ figure, imshow(imglab), title('l*a*b* image')
 
 
 % (6.3)
-K = 3;
+K = 4;
 [mapEM, mus] = EM(imglab, K);
 visualizeSegmentationResults(mapEM,mus);
 
