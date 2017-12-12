@@ -1,4 +1,4 @@
-function visualizeSegmentationResults (map,vals)
+function visualizeSegmentationResults (map,vals, alg_name)
  
 % vals contains K values of dimension D
 % in a K x D matrix
@@ -6,7 +6,7 @@ function visualizeSegmentationResults (map,vals)
 K = size(vals,1);
 D = size(vals,2);
 
-figure, imagesc(map), title('Assignments')
+figure, imagesc(map), title([alg_name, ' Assignments']);
 
 valImg = zeros(size(map,1),size(map,2),D);
 
@@ -19,6 +19,6 @@ for d=1:D
 end
 
 
-figure, imagesc(valImg), title('valImg')
+figure, imagesc(valImg), title([alg_name, ' Means']);
 
 end

@@ -10,13 +10,7 @@ ch1 = reshape(ch1, [n*m, 1]);
 ch2 = reshape(ch2, [n*m, 1]);
 ch3 = reshape(ch3, [n*m, 1]);
 
-X = [ch1 ch2 ch3 ones(n*m,1)];
-
-% normalize data
-[X, T] = normalise3dpts(X');
-X = (X(1:3,:))';
-r = r * T(1,1); % rescale the radius as well
-
+X = [ch1 ch2 ch3];
 n_pixels = n*m;
 assert(size(X,1) == n_pixels);
 assert(size(X,2) == 3);
@@ -24,15 +18,15 @@ assert(size(X,2) == 3);
 % assigns each pixel to a cluster
 assignments = 1:n_pixels;
 
+% maps previous peaks to the current peakes
+map = [];
 
 % iterate until convergence
 iter = 0;
 while 1    
     iter = iter + 1;
+    disp(['Iteration: ',num2str(iter)]);
     peaks = find_peak(X, X(1,:) , r);
-    
-    % maps previous peaks to the current peakes
-    map = [1];
     
     assert(size(peaks,2) == 3);
     assert(size(peaks,1) == 1);
@@ -60,14 +54,17 @@ while 1
     end
     
     assignments = reassign(assignments, map);
-    num_peaks = size(peaks,1);
-    num_clusters = max(assignments);
-    assert(num_peaks == num_clusters, '%d == %d', num_peaks, num_clusters)
-       
+    asse
+    
+    
 end
 
-disp(['Iterations: ',num2str(iter)]);
-
 assignments = reshape(assignments, [n, m]);
+
+
+
+
+
+
 
 end
