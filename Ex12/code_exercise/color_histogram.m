@@ -1,0 +1,1 @@
+function hist = color_histogram(xMin,yMin,xMax,yMax,frame,hist bin)
