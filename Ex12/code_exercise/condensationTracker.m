@@ -105,8 +105,10 @@ particles = repmat(meanStateAPriori(1,:), params.num_particles, 1);
 particles_w = repmat(1/params.num_particles, params.num_particles, 1);
 
 if params.model==0
+    disp('Its model 0!!');
     params.A = eye(2);
 else 
+    disp('Its model 1!!');
     params.A = eye(4);
 end
 

@@ -1,0 +1,12 @@
+function particles_w = observe(particles,frame,H,W,hist_bin,hist_target,sigma_observe)
+n, d = size(particles);
+
+for p = 1:n
+    xMin = round(particles(p, 1) - 0.5 * W);
+    xMax = round(particles(p, 1) + 0.5 * W);
+    yMin = round(particles(p, 2) - 0.5 * H);
+    yMax = round(particles(p, 2) + 0.5 * H);
+    hist = color_histogram(xMin,yMin,xMax,yMax,frame,hist_bin);
+    dist = chi2_cost(hist, hist_target);
+    
+    
