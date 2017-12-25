@@ -13,7 +13,7 @@ function condensationTracker(videoName,params)
 %        . model      {0,1} system model (0 = no motion, 1 = constant velocity)
 %
 % if using model = 1 then the following parameters are used:
-%        . sigma_velocity   std. dev. of system model velocity noise
+%        . sigma_velocity   std. dev. of system  velocity noise
 %        . initial_velocity initial velocity to set particles to
 %
 % Computer Vision - Autumn 2017
@@ -103,6 +103,12 @@ end
 % INITIALIZE PARTICLES
 particles = repmat(meanStateAPriori(1,:), params.num_particles, 1);
 particles_w = repmat(1/params.num_particles, params.num_particles, 1);
+
+if params.model==0
+    params.A = eye(2);
+else 
+    params.A = eye(4);
+end
 
 for i = 1:length(frameValues)
     t = frameValues(i);
