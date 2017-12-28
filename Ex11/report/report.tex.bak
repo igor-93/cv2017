@@ -60,7 +60,7 @@
 \normalfont \normalsize 
 \textsc{ETH Zurich, D-INFK} \\ [25pt] % Your university, school and/or department name(s)
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
-\huge Computer Vision Exercise 11 \\ % The assignment title
+\huge Computer Vision Exercise 11: Segmentation \\ % The assignment title
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
 
@@ -73,9 +73,7 @@
 \maketitle % Print the title
 
 
-\section{Image Segmentation}
-
-\subsection{Preprocessing}
+\section{Preprocessing}
 Preprocessing is done with Gaussian filter with $\sigma=5$ and filter size $5\times5$. The results are shown in Figures \ref{fig:cow} and \ref{fig:zebra}.
 
 \begin{figure}
@@ -111,7 +109,7 @@ Preprocessing is done with Gaussian filter with $\sigma=5$ and filter size $5\ti
 \end{figure}
 
 
-\subsection{Mean-Shift Segmentation}
+\section{Mean-Shift Segmentation}
 
 Mean-shift algorithm is implemented as described in the exercise sheet and the slides. Since my implementation is very slow, I have run it with rescaled zebra image with scale factor of 0.5 and the original sized cow image. For both images I have chosen $radius=10$. I have also normalized the pixels to 0 mean and $\sqrt{3}$ variance. Algorithm found 5 clusters for cow image and 4 clusters for zebra image. The algorithm always converged in around $5-6$ iterations. Results are shown on Figures \ref{fig:ms_cow} and \ref{fig:ms_zebra}.
 
@@ -148,28 +146,24 @@ Mean-shift algorithm is implemented as described in the exercise sheet and the s
 \end{figure}
 
 
-\subsection{EM Segmentation}
+\section{EM Segmentation}
 
-Before applying the EM I have normalized the pixels the same way as above. I have also initialized the means the same way as in k-means++ (this way the means will be probably far from each other and thus nicely distributed across the whole data set). Covariance matrix is initialized as described in the exercise slides. The algorithm always converged in less than 20 iterations and was very fast.
-
-
-
-TODO: display images with k= 3,4,5
+Before applying the EM I have normalized the pixels the same way as above. I have also initialized the means the same way as in k-means++ (this way the means will be probably far from each other and thus nicely distributed across the whole data set). Covariance matrix is initialized as described in the exercise slides. The algorithm always converged in less than 20 iterations and was very fast. The results for $K=3,4,5$ are displayed in Figures \ref{fig:em_cow} and \ref{fig:em_zebra}.
 
 
 \begin{figure}
 \centering
-\begin{subfigure}{.33\textwidth}
+\begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=\linewidth]{cow/em3_means.jpg}
   \caption{K = 3}
 \end{subfigure}
-\begin{subfigure}{.33\textwidth}
+\begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=\linewidth]{cow/em4_means.jpg}
   \caption{K = 4}
 \end{subfigure}
-\begin{subfigure}{.33\textwidth}
+\begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=\linewidth]{cow/em5_means.jpg}
   \caption{K = 5}
@@ -180,17 +174,17 @@ TODO: display images with k= 3,4,5
 
 \begin{figure}
 \centering
-\begin{subfigure}{.33\textwidth}
+\begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=\linewidth]{zebra/em3_means.jpg}
   \caption{K = 3}
 \end{subfigure}
-\begin{subfigure}{.33\textwidth}
+\begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=\linewidth]{zebra/em4_means.jpg}
   \caption{K = 4}
 \end{subfigure}
-\begin{subfigure}{.33\textwidth}
+\begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=\linewidth]{zebra/em5_means.jpg}
   \caption{K = 5}
@@ -199,5 +193,17 @@ TODO: display images with k= 3,4,5
 \label{fig:em_zebra}
 \end{figure}
 
+
+\section{Results Discussion}
+
+The results were in general very good. But this could have been expected since the images to be segmented were pretty easy. In both images we had a black-white animal on the green surface. Thus it was reasonably easy to distinguish background from the foreground. There were however 2 things that were not perfect:
+\begin{itemize}
+\item EM is not deterministic and thus sometimes I would get more clusters for the background and sometimes more clusters for the foreground. On the other hand, the different clusters that belonged to the same part of the image had very similar mean vectors. See Figure \ref{fig:em_zebra}.
+\item On the cow picture it seemed that Mean-Shift found cluster means for the grass and black part of the cow that were pretty close to each other
+\end{itemize}
+
+
+
+Nevertheless the algorithms are very simple and we could easily distinguish the foreground with a bit of post-processing. 
 
 \end{document}

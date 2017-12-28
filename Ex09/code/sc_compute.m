@@ -13,13 +13,16 @@ theta_bins = linspace(0, 2*pi, nbBins_theta+1);
 
 % calculate log distances for all pairs
 dists = real(sqrt(dist2(X, X)));
-%keyboard;
+
 % normalize the distances 
+%mean_dist = mean(dists(:));
+%dists = dists / mean_dist;
+
 dists = log(dists);
 idx = 1==eye(size(dists));
 dists(idx) = 0;
-%mean_dist = mean(dists(:));
-%dists = dists / mean_dist;
+
+%keyboard;
 
 
 % for each point calculate the histogram

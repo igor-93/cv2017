@@ -9,8 +9,6 @@
 
 function [Eh, E] = essentialMatrix(x1s, x2s)
 
-    %[x1s, T1] = normalizePoints2d(x1s);
-    %[x2s, T2] = normalizePoints2d(x2s);
     [x1s, T1] = normalise2dpts(x1s);
     [x2s, T2] = normalise2dpts(x2s);
     

@@ -1,0 +1,110 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+%\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{ETH Zurich, D-INFK} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Computer Vision Exercise 9 \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Igor Pesic} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+
+\section{Shape Context Descriptors and Shape Matching}
+
+\subsection{Short Description}
+
+The algorithm is based on the given paper. The main steps that I implemented are 
+\begin{itemize}
+\item Shape Context Descriptors
+\item Cost Matrix
+\item Transformation with Thin Plate Splines
+\item K-nn Classifier
+\end{itemize}
+
+The descriptor is basically the coarse histogram. It counts the number of key points in each bin. The bins are uniformly spreaded in log-polar space. The histogram is then vectorized.\\
+The Cost matrix is implemented the exact way as proposed in the paper.\\
+Transformation of the template points to target is also implemented as proposed in the paper. I.e. One transformation is calculated for $x$ direction and on for $y$ direction. Then the points of the template are transformed with the $(f_x,f_y)$ transformations.\\
+Finally, the shapes are classified with k-nearest-neighbors classifier using leave-one-out cross-validation. The classification is based on the distance between the shapes which is defined as the bending energy for the transformation.\\
+
+\subsection{Scale Invariance}
+The paper proposes the method to make the algorithm scale invariant by normalizing the radial distances by the mean distance. Though, my implementation does not include that since the given images are pretty much of the similar scale.
+
+\subsection{Influence of K}
+
+Choosing K much bigger than 5 does not make sense, since we only have 5 instances in each class. Thus I have tried the $K$ with values $4,5,6$. Here are the scores depending on K:
+\begin{itemize}
+\item $K=4$ : score = 14/15
+\item $K=5$ : score = 11/15
+\item $K=6$ : score = 9/15
+\end{itemize}
+
+I believe that the reason for better accuracy with smaller K is that $1-3$ are always pretty much similar and after that there are more other instance (i.e. also from the other classes) with more equal energies and is harder to distinguish.
+
+Also I have tried the Jitendra Malik's sampling method and the results are slightly better. 
+
+
+\end{document}
