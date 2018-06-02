@@ -12,10 +12,6 @@ classes_found = {};
      classes_found{i} = cl;
  end
  
-keyboard;
-% testClass = mode(classes_found);
- 
- 
 x = classes_found;
 y = unique(x);
 n = zeros(length(y), 1);

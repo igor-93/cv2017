@@ -40,9 +40,11 @@ function [P] = projmatrix(varargin)
     P =  [Pvec(1) Pvec(2)  Pvec(3)  Pvec(4) ;
          Pvec(5) Pvec(6)  Pvec(7)  Pvec(8) ;
          Pvec(9) Pvec(10) Pvec(11) Pvec(12)];
-    
+     
     % Denormalise
     P = inv(T1)*P*T2;
+    
+    
     
 function [x1, x2, npts] = checkargs(arg);
     

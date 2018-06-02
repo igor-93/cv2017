@@ -67,7 +67,9 @@ function [P, inliers] = ransacfitprojmatrix(x1, x2, t, feedback)
     
     % make sure the projection matrix fits together with the projection
     % matrices computed with the essential matrix
+    
     P = ([P./norm(P(1:3,1:3)); 0 0 0 1]);
+    
     
 %--------------------------------------------------------------------------
 

@@ -1,4 +1,4 @@
-# cv2017
+# Homeworks for Computer Vision course in winter semester 2017
 
 Topics:
 - Ex01: Feature Matching

@@ -196,6 +196,12 @@ Before applying the EM I have normalized the pixels the same way as above. I hav
 
 \section{Results Discussion}
 
-TODO: here put whatever....
+The results were in general very good. But this could have been expected since the images to be segmented were pretty easy. In both images we had a black-white animal on the green surface. Thus it was reasonably easy to distinguish background from the foreground. There were however 2 things that were not perfect:
+\begin{itemize}
+\item EM is not deterministic and thus sometimes I would get more clusters for the background and sometimes more clusters for the foreground. On the other hand, the different clusters that belonged to the same part of the image had very similar mean vectors. See Figure \ref{fig:em_zebra}.
+\item On the cow picture it seemed that Mean-Shift found cluster means for the grass and black part of the cow that were pretty close to each other.
+\end{itemize}
+
+Nevertheless the algorithms are very simple and we could easily distinguish the foreground with a bit of post-processing. 
 
 \end{document}

@@ -4,7 +4,7 @@
 %...
 %fig is the figure number where to draw the cameras
 
-function drawCameras(Ms, fig)
+function drawCameras(Ms, fig, XS )
     [sx, sy] = size(Ms);
     
     o = [0, 0, 0, 1]';
@@ -28,6 +28,9 @@ function drawCameras(Ms, fig)
     hold on, line([po(1, :); px(1,:)], [po(2, :); px(2,:)], [po(3, :); px(3,:)], 'Color', [1, 0, 0]);
     hold on, line([po(1, :); py(1,:)], [po(2, :); py(2,:)], [po(3, :); py(3,:)], 'Color', [0, 1, 0]);
     hold on, line([po(1, :); pz(1,:)], [po(2, :); pz(2,:)], [po(3, :); pz(3,:)], 'Color', [0, 0, 1]);
+    hold on, plot3(XS(1,:), XS(2,:), XS(3,:), '.', 'Color', [0, 0, 1])
+    %hold on, plot3(XS3(1,:), XS3(2,:), XS3(3,:), '.', 'Color', [1, 0, 0])
+    %hold on, plot3(XS4(1,:), XS4(2,:), XS4(3,:), '.', 'Color', [0, 1, 0])
     axis equal;
     grid on;
     a = 1;
